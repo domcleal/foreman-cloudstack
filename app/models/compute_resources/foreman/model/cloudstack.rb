@@ -37,6 +37,15 @@ module Foreman::Model
             return zones_array
         end
 
+        # save the zone
+        def set_zone=(zone_id)
+            self.attrs[:zone_id] = zone_id
+        end
+
+        def get_zone
+            self.attrs[:zone_id]
+        end
+
         def domain
             attrs[:domain]
         end
@@ -94,7 +103,7 @@ module Foreman::Model
             args[:network_ids] = [args[:subnet_id]] if args[:subnet_id]
             args[:network_ids] = nil
 
-            args[:zone_id] = zone_id
+            args[:zone_id] = get_zone
 
             args[:display_name] = args[:name]
             # name has to be hostname without domain: no dots allowed

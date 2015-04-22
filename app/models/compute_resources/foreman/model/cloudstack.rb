@@ -6,7 +6,7 @@ module Foreman::Model
         after_create :setup_key_pair
         after_destroy :destroy_key_pair
         delegate :flavors, :to => :client
-        attr_accessor :zone
+        attr_accessor :zone, :hypervisor
         #alias_attribute :subnet_id, :network_ids
 
         validates :url, :user, :password, :presence => true
@@ -46,6 +46,17 @@ module Foreman::Model
             self.attrs[:zone_id]
         end
 
+        def hypervisors
+            return [] if url.blank? or user.blank? or password.blank?
+            hypervisorsobj = client.list_hypervisors
+
+            hypervisors_array = []
+            hypervisorsobj["listhypervisorsresponse"]["hypervisor"].each do |hypervisor|
+                hypervisors_array.push(hypervisor["name"])
+            end
+            return hypervisors_array
+        end
+
         def domain
             attrs[:domain]
         end
@@ -56,6 +67,18 @@ module Foreman::Model
 
         def zone_id
             return client.list_zones["listzonesresponse"]["zone"][0]["id"]
+        end
+
+        def hypervisor
+            attrs[:hypervisor]
+        end
+
+        def set_hypervisor=(hypervisor)
+            self.attrs[:hypervisor] = hypervisor
+        end
+
+        def get_hypervisor
+            self.attrs[:hypervisor]
         end
 
         def provided_attributes

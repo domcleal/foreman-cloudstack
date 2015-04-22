@@ -25,6 +25,7 @@ class ComputeResourcesController < ApplicationController
     if params[:compute_resource].present? && params[:compute_resource][:provider].present?
       @compute_resource = ComputeResource.new_provider params[:compute_resource]
       @compute_resource.set_zone = params[:compute_resource][:zone]
+      @compute_resource.set_hypervisor = params[:compute_resource][:hypervisor]
       if @compute_resource.save
         process_success :success_redirect => @compute_resource
       else

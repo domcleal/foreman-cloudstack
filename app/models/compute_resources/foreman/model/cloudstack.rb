@@ -6,6 +6,7 @@ module Foreman::Model
         after_create :setup_key_pair
         after_destroy :destroy_key_pair
         delegate :flavors, :to => :client
+        delegate :disk_offerings, :to => :client
         attr_accessor :zone, :hypervisor
         #alias_attribute :subnet_id, :network_ids
 

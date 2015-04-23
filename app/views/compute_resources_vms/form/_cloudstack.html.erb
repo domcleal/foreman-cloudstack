@@ -1,13 +1,7 @@
-<%= select_f f, :flavor_id, compute_resource.flavors, :id, :name, {}, :label => _('Flavor') %>
+<%= select_f f, :flavor_id, compute_resource.flavors, :id, :name, {}, :label => _('Service Offering') %>
 <%= select_f f, :image_id, compute_resource.images, :uuid, :name, {}, :label => _('Image') %>
+<%= select_f f, :disk_offering_id, compute_resource.disk_offerings, :id, :name, {}, :label => _('Disk Offering') %>
 <% new = f.object && f.object.id.blank? %>
-<%
-   arch ||= nil ; os ||= nil
-   images = possible_images(compute_resource, arch, os)
-%>
-<div id='image_selection'>
-image selection area
-</div>
 
 <div id='subnet_selection'>
 <%# select_f f, :zone_id, compute_resource.zones, :id, :name, {}, :label => _('Zone') %>

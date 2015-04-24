@@ -12,6 +12,15 @@ module Foreman::Model
 
         validates :url, :user, :password, :presence => true
 
+        # add additional params to the 'new' method
+        def initialize(params)
+            super
+            if params
+                attrs[:zone_id] = params[:zone]
+                attrs[:hypervisor] = params[:hypervisor]
+            end
+        end
+
         def domains
             return [] if url.blank? or user.blank? or password.blank?
             domainsobj = client.list_domains

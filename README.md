@@ -10,25 +10,23 @@ Please see the Foreman manual for appropriate instructions:
 
 * [Foreman: How to Install a Plugin](http://theforeman.org/manuals/latest/index.html#6.1InstallaPlugin)
 
-The gem name is "foreman_cloudstack".
+The gem name is "foreman_cloudstack2".
 
 ## Compatibility
 
 | Foreman Version | Plugin Version |
 | ---------------:| --------------:|
-| >=  1.5         | 0.0.1          |
+| >=  1.7         | 0.1.0          |
 
 ## Latest code
 
 You can get the develop branch of the plugin by specifying your Gemfile in this way:
 
-    gem 'foreman_cloudstack', :git => "https://github.com/ddoc/foreman-cloudstack.git"
+    gem 'foreman_cloudstack', :git => "https://github.com/bytemine/foreman-cloudstack.git"
 
 ## Limitations
 
 Only advanced networking is supported
-
-Zone selection is not supported
 
 All user data is gzipped
 
